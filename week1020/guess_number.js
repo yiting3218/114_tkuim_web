@@ -11,7 +11,7 @@ function toInt(str) {
 
 var target = rand1to100();
 var tries = 0;
-var guesses = [];  // <-- 這裡改名，不要用 history
+var guesses = []; 
 var msg = '';
 
 while (true) {
@@ -28,7 +28,7 @@ while (true) {
   }
 
   tries++;
-  guesses.push(n); // <-- 使用 guesses
+  guesses.push(n); 
 
   if (n === target) {
     alert('恭喜答對！答案是 ' + target + '。共嘗試 ' + tries + ' 次。');
