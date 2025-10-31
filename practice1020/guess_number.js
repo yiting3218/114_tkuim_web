@@ -1,6 +1,5 @@
 // guess_number.js
 // 穩定版：持續提示，直到猜中或取消
-// 避免與 window.history 撞名，使用 guesses 作為紀錄陣列
 function rand1to100() {
   return Math.floor(Math.random() * 100) + 1;
 }
