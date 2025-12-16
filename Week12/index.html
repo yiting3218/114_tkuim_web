@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Antigravity • Login</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="grid"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__dot"></span>
+      <span class="brand__name">Antigravity</span>
+      <span class="brand__sub">Client</span>
+    </div>
+    <nav class="nav">
+      <a class="nav__link" href="./index.html" aria-current="page">Login</a>
+      <a class="nav__link" href="./about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card lift">
+      <div class="card__header">
+        <h1 class="title">系統登入</h1>
+        <p class="muted">請輸入帳號密碼登入。登入後將導向 About 頁。</p>
+      </div>
+
+      <form id="loginForm" class="form" autocomplete="on">
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input class="input" type="email" name="email" placeholder="student@example.com" required />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Password</span>
+          <input class="input" type="password" name="password" placeholder="請輸入密碼" minlength="4" required />
+        </label>
+
+        <label class="check">
+          <input id="rememberMe" type="checkbox" />
+          <span>記住登入狀態</span>
+        </label>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">登入</button>
+          <button class="btn ghost" id="fillDemo" type="button">填入測試帳號</button>
+        </div>
+
+        <div id="msg" class="msg" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="card lift side">
+      <h2 class="subtitle">作業說明</h2>
+      <p class="muted">
+        這是一個前端雙頁示範（index / about），以玻璃霧面、漂浮光暈與深色介面呈現 antigravity 風格。
+      </p>
+
+      <div class="hint">
+        <div class="pill">提示</div>
+        <p class="muted">
+          目前用 <code>localStorage</code> 暫存登入狀態（token / user），方便展示導頁與受保護頁面概念。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted">Antigravity UI • Front-end only</span>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>

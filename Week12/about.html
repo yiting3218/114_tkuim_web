@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Antigravity • About</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="bg">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="grid"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__dot"></span>
+      <span class="brand__name">Antigravity</span>
+      <span class="brand__sub">About</span>
+    </div>
+    <nav class="nav">
+      <a class="nav__link" href="./index.html">Login</a>
+      <a class="nav__link" href="./about.html" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <main class="container dashboard">
+    <section class="card lift">
+      <div class="row">
+        <div>
+          <h1 class="title">登入後頁面</h1>
+          <p class="muted">此頁為受保護頁面：未登入會自動導回 Login。</p>
+        </div>
+        <div class="row__right">
+          <button class="btn ghost" id="copyToken" type="button">複製 Token</button>
+          <button class="btn danger" id="logoutBtn" type="button">登出</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__k">使用者</div>
+          <div id="email" class="stat__v">-</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">角色</div>
+          <div id="role" class="stat__v">-</div>
+        </div>
+        <div class="stat">
+          <div class="stat__k">狀態</div>
+          <div id="status" class="stat__v">已登入</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card lift">
+      <h2 class="subtitle">頁面內容</h2>
+      <p class="muted">
+        
+      </p>
+
+      <div class="panel">
+        <div class="panel__head">
+          <span class="pill">Demo</span>
+          <span class="muted">顯示一段資料</span>
+        </div>
+
+        <pre id="output" class="codebox">點「載入資料」顯示內容…</pre>
+
+        <div class="actions">
+          <button class="btn primary" id="loadBtn" type="button">載入資料</button>
+          <button class="btn ghost" id="clearBtn" type="button">清除</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card lift">
+      <h2 class="subtitle">Antigravity 視覺重點</h2>
+      <ul class="list">
+        <li>玻璃霧面卡片與柔和發光邊框</li>
+        <li>漂浮光球背景，滑鼠 hover 上浮</li>
+        <li>深色漸層與網格，提升層次感</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span class="muted">Antigravity UI • About Page</span>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
+</html>
