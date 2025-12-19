@@ -1,0 +1,36 @@
+### Step 1: Create a User (student1)
+POST http://localhost:3001/auth/signup
+Content-Type: application/json
+
+{
+  "email": "student1@example.com",
+  "password": "password123"
+}
+
+### Step 2: Login (student1)
+POST http://localhost:3001/auth/login
+Content-Type: application/json
+
+{
+  "email": "student1@example.com",
+  "password": "password123"
+}
+
+### Step 3: Create Participant (student1)
+POST http://localhost:3001/api/signup
+Authorization: Bearer <student1_token>
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "0912345678"
+}
+
+### Step 4: Try Deleting (student2) Student1's Participant (Should be 403)
+DELETE http://localhost:3001/api/signup/<participant_id>
+Authorization: Bearer <student2_token>
+
+### Step 5: Delete Participant as Admin (Should be 204)
+DELETE http://localhost:3001/api/signup/<participant_id>
+Authorization: Bearer <admin_token>
