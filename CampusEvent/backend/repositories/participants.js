@@ -1,3 +1,4 @@
+// backend/repositories/participants.js
 import { ObjectId } from "mongodb";
 import { getDB } from "../db/index.js";
 
@@ -5,15 +6,19 @@ const collection = () => getDB().collection("participants");
 
 export async function createParticipant(data) {
   const now = new Date();
-  const result = await collection().insertOne({
+
+  const doc = {
     name: data.name,
-    email: data.email,
+    studentId: data.studentId,
+    department: data.department,
     eventTitle: data.eventTitle,
     status: data.status || "pending",
     note: data.note || "",
     createdAt: now,
     updatedAt: now
-  });
+  };
+
+  const result = await collection().insertOne(doc);
   return result.insertedId;
 }
 
@@ -26,15 +31,18 @@ export async function findParticipantById(id) {
 }
 
 export async function updateParticipant(id, patch) {
+  const now = new Date();
+
   const result = await collection().updateOne(
     { _id: new ObjectId(id) },
     {
       $set: {
         ...patch,
-        updatedAt: new Date()
+        updatedAt: now
       }
     }
   );
+
   return result.matchedCount > 0;
 }
 

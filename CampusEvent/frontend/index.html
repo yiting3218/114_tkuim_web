@@ -8,63 +8,177 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="header">
-    <h1>校園活動報名管理系統</h1>
-    <p>Campus Event Registration Management System</p>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">CEM</div>
+        <div class="brand-text">
+          <h1>校園活動報名管理系統</h1>
+          <p>Campus Event Registration Management System</p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div id="userBadge" class="pill hidden"></div>
+        <button id="logoutBtn" class="btn ghost sm hidden" type="button">登出</button>
+        <div class="pill">Admin Panel</div>
+      </div>
+    </div>
   </header>
 
   <main class="container">
 
-    <!-- 新增報名 -->
-    <section class="card">
-      <h2>新增報名資料</h2>
-      <form id="createForm" class="form">
-        <div class="form-group">
-          <label>姓名</label>
-          <input type="text" id="name" placeholder="請輸入姓名" required />
+    <!-- Auth -->
+    <section id="authView" class="auth-center">
+      <div class="auth-card">
+        <div class="auth-title">校園活動報名管理系統</div>
+
+        <div class="tabs">
+          <button id="tabLogin" class="tab active" type="button">登入</button>
+          <button id="tabRegister" class="tab" type="button">註冊</button>
         </div>
 
-        <div class="form-group">
-          <label>學號</label>
-          <input type="text" id="studentId" placeholder="例：410123456" required />
-        </div>
+        <!-- Login -->
+        <form id="loginForm" class="auth-form">
+          <div class="field">
+            <label>帳號</label>
+            <input id="loginUsername" type="text" placeholder="請輸入帳號" required />
+          </div>
 
-        <div class="form-group">
-          <label>系級</label>
-          <input type="text" id="department" placeholder="例：資管三A" required />
-        </div>
+          <div class="field">
+            <label>密碼</label>
+            <input id="loginPassword" type="password" placeholder="請輸入密碼" required />
+          </div>
 
-        <div class="form-group">
-          <label>活動名稱</label>
-          <input type="text" id="eventTitle" placeholder="活動名稱" required />
-        </div>
+          <button class="btn primary full" type="submit">登入</button>
+          <div id="loginMsg" class="msg hidden"></div>
+        </form>
 
-        <button type="submit" class="primary">新增報名</button>
-      </form>
+        <!-- Register -->
+        <form id="registerForm" class="auth-form hidden">
+          <div class="field">
+            <label>帳號</label>
+            <input id="registerUsername" type="text" placeholder="至少 4 碼（英文或數字）" required />
+          </div>
+
+          <div class="field">
+            <label>密碼</label>
+            <input id="registerPassword" type="password" placeholder="至少 6 碼" required />
+          </div>
+
+          <div class="field">
+            <label>確認密碼</label>
+            <input id="registerPassword2" type="password" placeholder="再次輸入密碼" required />
+          </div>
+
+          <button class="btn primary full" type="submit">建立帳號</button>
+          <div id="registerMsg" class="msg hidden"></div>
+        </form>
+
+      </div>
     </section>
 
-    <!-- 報名清單 -->
-    <section class="card">
-      <h2>報名清單</h2>
+    <section id="appView" class="hidden">
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>姓名</th>
-            <th>學號</th>
-            <th>系級</th>
-            <th>活動名稱</th>
-            <th>狀態</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody id="list">
-          <tr>
-            <td colspan="6" class="empty">目前尚無報名資料</td>
-          </tr>
-        </tbody>
-      </table>
+      <section class="stats">
+        <div class="stat">
+          <div class="stat-label">總報名數</div>
+          <div id="statTotal" class="stat-value">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">已確認</div>
+          <div id="statConfirmed" class="stat-value">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">待確認</div>
+          <div id="statPending" class="stat-value">0</div>
+        </div>
+      </section>
+
+      <!-- App Tabs -->
+      <section class="card">
+        <div class="app-tabs">
+          <button id="tabCreate" class="app-tab active" type="button">新增報名</button>
+          <button id="tabList" class="app-tab" type="button">報名清單</button>
+        </div>
+
+        <!-- Create -->
+        <div id="createView">
+          <div class="card-head">
+            <h2>新增報名資料</h2>
+            <p class="hint">新增成功後會自動切換到「報名清單」。</p>
+          </div>
+
+          <form id="createForm" class="form">
+            <div class="form-group">
+              <label>姓名</label>
+              <input type="text" id="name" placeholder="請輸入姓名" required />
+            </div>
+
+            <div class="form-group">
+              <label>學號</label>
+              <input type="text" id="studentId" placeholder="例：410123456" required />
+            </div>
+
+            <div class="form-group">
+              <label>系級</label>
+              <input type="text" id="department" placeholder="例：資管三A" required />
+            </div>
+
+            <div class="form-group">
+              <label>活動名稱</label>
+              <input type="text" id="eventTitle" placeholder="例：羽球比賽" required />
+            </div>
+
+            <button type="submit" class="btn primary full">新增報名</button>
+            <div id="createMsg" class="msg hidden"></div>
+          </form>
+        </div>
+
+        <!-- List -->
+        <div id="listView" class="hidden">
+          <div class="card-head row">
+            <div>
+              <h2>報名清單</h2>
+              <p class="hint">可進行「確認」或「刪除」，狀態會同步更新。</p>
+            </div>
+
+            <div class="row-actions">
+              <input id="searchInput" class="search" type="text" placeholder="搜尋：姓名 / 學號 / 活動" />
+              <button class="btn ghost sm" type="button" id="refreshBtn">重新整理</button>
+            </div>
+          </div>
+
+          <div class="table-wrap" id="tableWrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>姓名</th>
+                  <th>學號</th>
+                  <th>系級</th>
+                  <th>活動名稱</th>
+                  <th>狀態</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="list">
+                <tr>
+                  <td colspan="6" class="empty">目前尚無報名資料</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="list-foot">
+            <div id="listMsg" class="msg hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>Campus Event Manager • Local Demo</div>
+        <div class="footer-right">Backend: http://localhost:3000</div>
+      </footer>
     </section>
 
   </main>
